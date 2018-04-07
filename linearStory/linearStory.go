@@ -19,6 +19,13 @@ func (page *storyPage)playStory()  {
 	}
 }
 
+func (page *storyPage)addToEnd(pageToAdd *storyPage)  {
+	for page.nextPage!=nil  {
+		page = page.nextPage
+	}
+	page.nextPage = pageToAdd
+}
+
 func main() {
 	page1 := storyPage{"It was a dark and stormy night.", nil}
 	page2 := storyPage{"You are alone, and you need to find the sacred helmet before the bad guys do", nil}
