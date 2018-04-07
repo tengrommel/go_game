@@ -20,17 +20,26 @@ func (page *storyPage)playStory()  {
 }
 
 func (page *storyPage)addToEnd(text string)  {
-	pageToAdd := &storyPage{text, nil}
 	for page.nextPage!=nil  {
 		page = page.nextPage
 	}
-	page.nextPage = pageToAdd
+	page.nextPage = &storyPage{text, nil}
 }
+
+// O(1)
+func (page *storyPage)AddAfter(text string)  {
+	newPage := &storyPage{text, page.nextPage}
+	page.nextPage = newPage
+}
+
+// Delete
 
 func main() {
 	page1 := storyPage{"It was a dark and stormy night.", nil}
 	page1.addToEnd("You climb into the attic, it is pitch black, you can't see a thing!")
 	page1.addToEnd("You are eaten by a Grue")
+
+	page1.AddAfter("Testing AddAfter")
 	page1.playStory()
 	// Functions - has return value - may also execute commands
 	// Procedures - has no return value, just executes commands
