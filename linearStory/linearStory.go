@@ -11,13 +11,12 @@ type storyPage struct {
 	nextPage *storyPage
 }
 
-func playStory(page *storyPage)  {
-	//如果不进行处理会产生 invalid memory address or nil pointer dereference
-	if page == nil{
-		return
+func (page *storyPage)playStory()  {
+	// 将递归改为循环
+	for page != nil{
+		fmt.Println(page.text)
+		page = page.nextPage
 	}
-	fmt.Println(page.text)
-	playStory(page.nextPage)
 }
 
 func main() {
@@ -27,5 +26,8 @@ func main() {
 	page1.nextPage = &page2
 	page2.nextPage = &page3
 
-	playStory(&page2)
+	page1.playStory()
+	// Functions - has return value - may also execute commands
+	// Procedures - has no return value, just executes commands
+	// Methods - functions attached to a struct/object/etc
 }
