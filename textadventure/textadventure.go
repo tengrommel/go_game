@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type choices struct {
 	cmd        string
 	desription string
@@ -23,6 +25,16 @@ func (node *storyNode)addChoice(cmd string, description string, nextNode *storyN
 		}
 		currentChoice.nextChoice = choice
 	}
+}
+
+func (node *storyNode)render()  {
+	fmt.Println(node.text)
+	currentChoice := node.choices
+	for currentChoice != nil{
+		fmt.Println(currentChoice.cmd, ":", currentChoice)
+		currentChoice = currentChoice.nextChoice
+	}
+
 }
 
 
