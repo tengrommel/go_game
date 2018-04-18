@@ -15,3 +15,5 @@ Here we see that the goroutine has been given no choice in the matter.
  - It can't simply swallow the error, and so it does the only sensible thing:
     > it prints the error and hopes something is paying attention.
  - Don't put your goroutines in this awkward position.
+ 
+ 

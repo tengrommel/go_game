@@ -19,6 +19,10 @@ func main() {
 					fmt.Println(err)
 					/*
 					Here we see the goroutine doing its best to signal that there's an error.
+					1. What else can it do?
+					2. It can't pass it back!
+					3. How many errors is too many?
+					4. Does it continue making requests?
 					 */
 					continue
 				}
