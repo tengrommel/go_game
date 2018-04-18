@@ -42,5 +42,4 @@ func main() {
 		}
 		fmt.Printf("Response: %v\n", result.Response.Status)
 	}
-
 }
