@@ -17,4 +17,6 @@ Here we see that the goroutine has been given no choice in the matter.
  - Don't put your goroutines in this awkward position.
  
 # Pipelines
-> When you write a program, you probably don't sit down and write one long function --- at least I hope you don't!
+>When you write a program, you probably don't sit down and write one long function --- at least I hope you don't!
+
+A pipeline is just another tool you can use to form an abstraction in your system.
