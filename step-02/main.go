@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -13,10 +12,11 @@ var upgrader = websocket.Upgrader{}
 
 type Message struct {
 	Type      string `json:"type"`
-	Content   string `json:"content"`
+	Content   interface{} `json:"content"`
 }
 
 var broadcast = make(chan Message, 100)
+var message_array = []Message{}
 
 func main() {
 	// Create a simple file server
@@ -86,14 +86,23 @@ func ice(message Message) {
 }
 
 func call(message Message) {
+	message_array = append(message_array, message)
 	//将两个sdp返回前端比对后拿到不同的sdp
-	for client := range clients {
-		err := client.WriteJSON(message)
-		if err != nil {
-			log.Printf("error: %v", err)
-			client.Close()
-			delete(clients, client)
+	if len(clients) == 2{
+		for _, msg :=range message_array {
+			for client := range clients {
+				err := client.WriteJSON(msg)
+				if err != nil {
+					log.Printf("error: %v", err)
+					client.Close()
+					delete(clients, client)
+				}
+			}
 		}
+		// 清空连接切片
+		message_array = nil
+	}else {
+		return
 	}
 }
 
